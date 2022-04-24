@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="primary">
+   <ion-buttons slot="start">
+    <ion-menu-button *ngIf="back"></ion-menu-button>
+    <ion-back-button *ngIf="!back" defaultHref="/home"></ion-back-button>
+   </ion-buttons>
+  
+ </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true" >
+ <h1 class="title">Detail transaction</h1>
+
+
+
+ <div class="address">
+   <ion-item lines="none">
+     xxxxxxxxxxxxxxxxxxx date
+ 
+   </ion-item>
+ </div>
+
+ <hr>
+
+ <div class="cart-total">
+   <ion-item lines="none">
+     <ion-label>Type</ion-label>
+     <ion-label slot="end" class="ion-text-right">xxxxxxxxxxxxxxx</ion-label>
+   </ion-item>
+   <ion-item lines="none">
+     <ion-label>Date</ion-label>
+     <ion-label slot="end" class="ion-text-right">xxxxxxxxxx</ion-label>
+   </ion-item>
+   <ion-item>
+     <ion-label>Cout</ion-label>
+     <ion-label slot="end" class="ion-text-right">10.00</ion-label>
+   </ion-item>
+  
+ </div>
+</ion-content>

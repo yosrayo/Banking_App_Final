@@ -1,0 +1,62 @@
+
+<ion-header>
+  <ion-toolbar >
+    <ion-buttons slot="start">
+     <ion-menu-button *ngIf="!back"></ion-menu-button>
+     <ion-back-button *ngIf="back" defaultHref="/home"></ion-back-button>
+     
+    </ion-buttons>
+  
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-no-border ion-padding center">
+  <ion-list-header class="ion-margin">
+    <ion-label>Générer un Qr Code</ion-label>
+  </ion-list-header>
+  <form [formGroup]="form">
+
+          
+
+    <div class="ion-margin-vertical">
+      <ion-item  align="center">
+      
+        <ion-input 
+          formControlName="phone" 
+          placeholder="Entrer le code" 
+          type="tel"
+          minlength="20"
+          maxlength="20"
+          [(ngModel)]="textToCode">
+        </ion-input>
+      </ion-item>
+      <ion-text *ngIf="!form.get('phone').valid && form.get('phone').touched">
+        <ion-text class="error" *ngIf="form.get('phone').hasError('required')" color="danger">
+          *code obligatoir de 20 numero
+        </ion-text>
+        <ion-text class="error" *ngIf="form.get('phone').hasError('minlength') 
+          && !form.get('phone').hasError('required')" color="danger">
+          *code obligatoir de 20 numero
+        </ion-text>
+      </ion-text>
+    </div>
+
+    <div class="center" *ngIf="myAngularxQrCode">
+      <qrcode [qrdata]="myAngularxQrCode"  ></qrcode>
+    </div>
+ 
+    <ion-button color="tertiary" expand="block" type="submit" (click)="createQRCode()" >
+      <ion-icon slot="start" name="create"></ion-icon>
+      Créer un QR Code
+    </ion-button>
+    <ion-button color="tertiary" expand="block" type="reset" (click)="reset()" >
+      <ion-icon slot="start" name="create"></ion-icon>
+     Annuler
+    </ion-button>
+
+  </form>
+ 
+
+
+</ion-content>
+
+

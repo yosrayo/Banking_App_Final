@@ -1,0 +1,45 @@
+<ion-content [fullscreen]="true">
+
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+     <ion-menu-button *ngIf="back"></ion-menu-button>
+     <ion-back-button *ngIf="!back" defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" routerLink="/edite-profile">EDIT</ion-button>
+     </ion-buttons>
+  </ion-toolbar>
+  <ion-grid class="main-header">
+    <div align="center">
+      <ion-avatar>
+        <img src="assets/imgs/2.png" />
+      </ion-avatar>
+    </div>
+  </ion-grid>
+
+
+
+  <ion-list lines="full">
+    <ion-item>
+      <ion-label>
+        <ion-text>Votre solde</ion-text>
+        <p><ion-text color="dark"> yosra</ion-text></p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-text>RIB</ion-text>
+        <p><ion-text color="dark">00000000</ion-text></p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-text>ID Paiment</ion-text>
+        <p><ion-text color="dark">000000</ion-text></p>
+      </ion-label>
+    </ion-item>
+ 
+  
+  </ion-list>
+
+</ion-content>
