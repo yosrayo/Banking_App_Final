@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { User } from 'src/app/classes/user';
 import { AuthFireService } from 'src/app/services/auth-fire.service';
 import { OtpComponent } from './otp/otp.component';
 
@@ -12,17 +14,33 @@ import { OtpComponent } from './otp/otp.component';
 export class Register3Page implements OnInit {
 
   form: FormGroup;
-
+  user = new User();
   constructor(
     private modalCtrl: ModalController,
-    private auth: AuthFireService
+    private auth: AuthFireService,
+    private route: Router ,
+    private router: ActivatedRoute,
   ) { }
 
   ngOnInit() {
+    this.router.queryParams.subscribe(params => {
+      if (params && params.special) {
+        this.user = JSON.parse(params.special);
+        console.log("ffffffff",this.user)
+      }
+    });
+   
     this.form = new FormGroup({
       phone: new FormControl(null, {
         validators: [Validators.required, Validators.minLength(8), Validators.maxLength(8)]
       }),
+    });
+
+    this.router.queryParams.subscribe(params => {
+      if (params && params.special) {
+        this.user = JSON.parse(params.special);
+        console.log("hhhhhh",this.user)
+      }
     });
   }
 

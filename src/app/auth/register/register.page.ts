@@ -25,8 +25,8 @@ export class RegisterPage implements OnInit {
  /// send data to register2
   x(){
     let navigationExtras: NavigationExtras = {
-      queryParams: {
-        special: JSON.stringify(this.user)
+      state: {
+        id: JSON.stringify(this.user)
       }
     };
     this.route.navigate(['register2'], navigationExtras);

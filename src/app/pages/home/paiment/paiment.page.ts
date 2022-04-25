@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import {Clipboard , WriteOptions} from "@capacitor/clipboard";
  
 
 @Component({
@@ -14,32 +14,42 @@ export class PaimentPage implements OnInit {
   public myAngularxQrCode: string = null;
   back: boolean;
   form: FormGroup;
- 
-  constructor(public router: Router ) { }
+  text:string ="click"
+  
+  constructor(public router: Router ) { 
+
+     this.textToCode="111111111111"
+  }
 
   ngOnInit() {
+  
     ///back to home page
     const data = this.router.url.split('/');
     console.log(data);
     if(data[1] == 'home') this.back = true;
     else this.back = false;
 /// controle de saisie
-    this.form = new FormGroup({
-      phone: new FormControl(null, {
-        validators: [Validators.required, Validators.minLength(20), Validators.maxLength(20)]
-      }),
-    });
+
+this.createQRCode();
   }
+
+
   createQRCode() {
-    if(!this.form.valid) {
-      return;
-    }else{
     this.myAngularxQrCode = this.textToCode;
    
   }
-}
+ 
 reset(){
   this.textToCode="";
   this.myAngularxQrCode="";
+}
+
+copy(){
+  var options : WriteOptions ={
+    string:this.text
+  }
+  Clipboard.write(options).then(()=>{
+    alert("text copié")
+  })
 }
 }

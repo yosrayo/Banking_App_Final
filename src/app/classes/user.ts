@@ -316,4 +316,5 @@ export class User {
     city : City;
     workType : WorkType;
     accountType : AccountType;
+	
 }

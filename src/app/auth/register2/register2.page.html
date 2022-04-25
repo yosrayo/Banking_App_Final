@@ -14,12 +14,14 @@
 
  
 
-  <form [formGroup]="signupForm">
+  <form name="form-signin" (ngSubmit)="f.form.valid && registerUser()" #f="ngForm" novalidate>
     <ion-list lines="none" class="ion-margin ion-text-center">
     
       <ion-item class="ion-margin-vertical">
         <ion-label color="dark">Bank</ion-label>
-        <ion-select   formControlName="bank"    placeholder="Entrez bank" >
+        <ion-select      placeholder="Entrez bank" id="city" name="city"  
+        placeholder="entrer votre Nom"  [(ngModel)]="user.city"
+         #city="ngModel" required >
           <ion-select-option value="BIAT">BIAT</ion-select-option>
           <ion-select-option value="STB">STB</ion-select-option>
           <ion-select-option value="ATB">ATB</ion-select-option>
@@ -29,14 +31,16 @@
       <ion-text 
         class="ion-text-left"
         color="danger"
-        *ngIf="!signupForm.get('bank').valid && signupForm.get('bank').touched">
-        <p class="error">*Please enter Username</p>
+        *ngIf="f.submitted && !city.valid"  >
+        <p class="error">*Nom obligatoir</p>
       </ion-text>
-
+  
 
       <ion-item class="ion-margin-vertical">
         <ion-label color="dark">Type compte</ion-label>
-        <ion-select   formControlName="compte"    placeholder="Enter ville" >
+        <ion-select   placeholder="Entrez bank" id="accountType" name="accountType"  
+        placeholder="entrer votre Nom"  [(ngModel)]="user.accountType"
+         #accountType="ngModel" required    placeholder="Enter ville" >
           <ion-select-option value="courant ">Courant </ion-select-option>
           <ion-select-option value="Epargne ">Epargne </ion-select-option>
       
@@ -45,47 +49,51 @@
       <ion-text 
         class="ion-text-left"
         color="danger"
-        *ngIf="!signupForm.get('compte').valid && signupForm.get('compte').touched">
-        <p class="error">*Please enter Username</p>
+        *ngIf="f.submitted && !accountType.valid"  >
+        <p class="error">*Nom obligatoir</p>
       </ion-text>
 
 
 
       <ion-item class="ion-margin-vertical">
         <ion-label color="dark">Type de travail</ion-label>
-        <ion-select   formControlName="travail"    placeholder="Enter ville" >
+        <ion-select    placeholder="Entrez bank" id="city" name="workType"  
+        placeholder="entrer votre Nom"  [(ngModel)]="user.workType"
+         #workType="ngModel" required     placeholder="Enter ville" >
           <ion-select-option value="courant ">public </ion-select-option>
           <ion-select-option value="Epargne ">privé </ion-select-option>
       
         </ion-select>
       </ion-item>
       <ion-text 
-        class="ion-text-left"
-        color="danger"
-        *ngIf="!signupForm.get('travail').valid && signupForm.get('travail').touched">
-        <p class="error">*Please enter Username</p>
-      </ion-text>
+      class="ion-text-left"
+      color="danger"
+      *ngIf="f.submitted && !workType.valid"  >
+      <p class="error">*Nom obligatoir</p>
+    </ion-text>
 
-      <ion-item class="ion-margin-vertical">
+     <!-- <ion-item class="ion-margin-vertical">
         <ion-label color="dark">Type d'identifier </ion-label>
-        <ion-select   formControlName="id"    placeholder="Enter ville" >
+        <ion-select    placeholder="Entrez bank" id="city" name="city"  
+        placeholder="entrer votre Nom"  [(ngModel)]="user.city"
+         #city="ngModel" required     placeholder="Enter ville" >
           <ion-select-option value="courant "> Carte d’identité national  </ion-select-option>
           <ion-select-option value="Epargne ">Passeport </ion-select-option>
       
         </ion-select>
       </ion-item>
       <ion-text 
-        class="ion-text-left"
-        color="danger"
-        *ngIf="!signupForm.get('id').valid && signupForm.get('id').touched">
-        <p class="error">*Please enter Username</p>
-      </ion-text>
-
+      class="ion-text-left"
+      color="danger"
+      *ngIf="f.submitted && !city.valid"  >
+      <p class="error">*Nom obligatoir</p>
+    </ion-text>
+-->
   
 
 
 
-      <ion-button color="primary" expand="full" [routerLink]="['/', 'register3']">suivant</ion-button>
+      <ion-button color="primary" expand="full" type="submit">suivant</ion-button>
     </ion-list>
   </form>
 

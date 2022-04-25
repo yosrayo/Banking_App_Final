@@ -69,4 +69,15 @@ export class AuthService {
     });
 
   }
+  login(identifiants) {
+    return this.http.post(this.UsersUrl, identifiants); // Template SUB_ROUTING
+  }
+  logout() {
+    localStorage.removeItem('my_token');
+  }
+
+  estConnecte() {
+    let token = localStorage.getItem('my_token');
+    return !!token;
+  }
 }

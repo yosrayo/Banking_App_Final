@@ -8,7 +8,7 @@
       </ion-text>
     </ion-label> 
   
-    <form name="form-signin" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate >
+    <form name="form-signin" (ngSubmit)="f.form.valid && login(f)" #f="ngForm" novalidate >
       <ion-list lines="none" class="ion-margin ion-padding ion-text-center">
         <ion-item class="ion-margin-vertical">
           <ion-icon 

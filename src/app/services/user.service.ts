@@ -25,7 +25,7 @@ export class UserService {
     };
   }
 
-  private UsersUrl = 'http://localhost:8089/user';
+  private UsersUrl = 'http://localhost:8089/ddops/user';
   constructor(private http: HttpClient) { }
 
   getUsers (): Observable<User[]> {
