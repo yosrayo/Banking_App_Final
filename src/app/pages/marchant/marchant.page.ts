@@ -15,7 +15,7 @@ export class MarchantPage implements OnInit {
   errorMessage: string;
   ionicForm: FormGroup;
  
-  constructor(private  authService:  AuthService, private  router:  Router) { }
+  constructor(private  router:  Router) { }
 
   ngOnInit() {
 
@@ -24,10 +24,8 @@ export class MarchantPage implements OnInit {
     if(data[1] == 'home') this.back = true;
     else this.back = false;
   }
-  login(form){
-    this.authService.logIn(form.value).subscribe((res)=>{
-      this.router.navigateByUrl('home');
-    });
+  submit(form){
+   
   }
 
 }

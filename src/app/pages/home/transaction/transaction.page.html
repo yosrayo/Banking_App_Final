@@ -11,10 +11,10 @@
 
 <ion-content >
   <div class="cart-items">
-    <ion-card mode="ios">
-      <ion-card-content>
+    <ion-card  *ngFor="let i of listAction" >
+      <ion-card-content >
         <div class="item-info">
-          <p>xxxxxxxxxxxxx</p>
+          <p>{{i.amount}}</p>
           <p>xxxxxxxxxxx</p>
           <p>xxxxxxxxxxxxxxxxx</p>
           <div class="qty-selector">

@@ -1,43 +1,44 @@
- <ion-header>
-    <ion-toolbar >
-      <ion-buttons slot="start">
-       <ion-menu-button *ngIf="back"></ion-menu-button>
-       <ion-back-button *ngIf="!back" defaultHref="/home"></ion-back-button>
-      </ion-buttons>
-    
-    </ion-toolbar>
-  </ion-header>
 
-  <ion-content [fullscreen]="true">
-    <ion-grid class="ion-no-padding">
-      <ion-row class="ion-no-padding">
-        <ion-col class="ion-margin-top ion-padding ion-text-center">
-          Utilize this Pay button in your app's installment page with the connected rationale.
+
+<ion-header>
+  <ion-toolbar >
+    <ion-buttons slot="start">
+     <ion-menu-button *ngIf="back"></ion-menu-button>
+     <ion-back-button *ngIf="!back" defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+  
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-no-border ion-padding">
+  <form #form="ngForm" (ngSubmit)="valider()">
+    <ion-grid>
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div text-center>
+            <h3>transfert d'argent</h3>
+          </div>
+          <div padding>
+            <ion-item>
+              <ion-input name="firstName" type="text" placeholder="Nom" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="lastName" type="text" placeholder="Prénom" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="amount" type="text" placeholder="Montant en Dinars" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="RIB" type="text" placeholder="NUméro RIB" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="banque" type="text" placeholder="Banque" ngModel required></ion-input>
+            </ion-item>
+          </div>
+          <div padding>
+            <ion-button color="primary" shape="round"  type="submit" [disabled]="form.invalid" expand="block">Confirmer</ion-button>
+          </div>
         </ion-col>
       </ion-row>
     </ion-grid>
-    <ion-card class="welcome-card ion-margin">
-      <ion-img src="./assets/paypal.jpg"></ion-img>
-      <ion-card-header>
-        <ion-card-subtitle>Get Started</ion-card-subtitle>
-        <ion-card-title><b>PayPal Sample</b></ion-card-title>
-        <ion-row>
-          <ion-col style="padding-left: 0;">Total Payment</ion-col>
-          <ion-col class="ion-text-end">
-           jjjjjjjjjj
-          </ion-col>
-        </ion-row>
-      </ion-card-header>
-      <ion-card-content class="ion-no-padding">
-        <ion-button expand="full" color="success" class="ion-no-margin" >Pay with PayPal
-        </ion-button>
-      </ion-card-content>
-    </ion-card>
-  
-    <div class="ion-margin response ion-padding">
-      <code>hhhhhhhh
-      </code>
-    </div>
-  
-  
-  </ion-content>
+  </form>
+</ion-content>

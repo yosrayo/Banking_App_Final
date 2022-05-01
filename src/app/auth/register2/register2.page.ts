@@ -52,12 +52,13 @@ user : User = new User();
     this.userService.create(this.user)
     .subscribe(
       res => {
-        this.route.navigate(['/login3']);
+        this.route.navigate(['/register3']);
+        alert("ajouter avec succés");
       },
       err => console.log(err)
     );
 
-    alert("ajouter avec succés");
+    
   }
 
 

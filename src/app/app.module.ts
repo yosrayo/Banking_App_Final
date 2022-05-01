@@ -11,7 +11,7 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-import { UrlPermission } from './Permision/urlPermission';
+
 import { QRCodeModule } from 'angularx-qrcode';
 
 
@@ -26,10 +26,11 @@ import { QRCodeModule } from 'angularx-qrcode';
       provideFirebaseApp(() => initializeApp(environment.firebase)), 
       provideAuth(() => getAuth()), 
       
+      
      
       
  ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, QRScanner ,  UrlPermission ,  ],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, QRScanner  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

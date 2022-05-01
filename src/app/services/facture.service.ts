@@ -26,7 +26,7 @@ export class FactureService {
     };
   }
 
-  private factureUrl = 'http://l192.168.43.154:8089/facture';
+  private factureUrl = 'http://localhost:8089/ddops/facture';
   constructor(private http: HttpClient) { }
 
 

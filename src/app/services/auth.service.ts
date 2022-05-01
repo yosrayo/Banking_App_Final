@@ -8,7 +8,7 @@ import { User } from '../classes/user';
   providedIn: 'root'
 })
 export class AuthService {
-  private UsersUrl = "http://l192.168.43.154:8089/user/login";
+  private UsersUrl = "http://localhost:8089/ddops/user/login";
   private router: Router;
   constructor(public http: HttpClient) { }
   public errorMessage = '';

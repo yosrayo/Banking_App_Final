@@ -26,16 +26,15 @@ export class ActionService {
       };
     }
 
-    private actionUrl = '';
+    private actionUrl = 'http://localhost:8089/ddops/action';
     constructor(private http: HttpClient) { }
 
 
-    getAction (): Observable<Action[]> {
-      return this.http.get<Action[]>(this.actionUrl).pipe(
-        tap(_ => console.log('fetched Actions')),
-        catchError(this.handleError<Action[]>('getActions', []))
-      );
+
+    getActionIdUser(id:number){
+      return this.http.get(this.actionUrl+'/findRecuPaiement'+id)
     }
+   
     create(action: Action): Observable<any> {
       return this.http.post<Action>(this.actionUrl, action, httpOptions).pipe(
         tap((newAction: Action) => console.log(`added user w/ id=${newAction.idAction}`)),
