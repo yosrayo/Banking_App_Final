@@ -1,0 +1,71 @@
+<ion-content [fullscreen]="true">
+
+
+    <ion-label class="welcomeMessage">
+      <ion-text color="light">Welcome Back,</ion-text> 
+      <ion-text color="white">
+        <p>Log In!</p>
+      </ion-text>
+    </ion-label> 
+  
+    <form name="form-signin" (ngSubmit)="f.form.valid && login(f)" #f="ngForm" novalidate >
+      <ion-list lines="none" class="ion-margin ion-padding ion-text-center">
+        <ion-item class="ion-margin-vertical">
+          <ion-icon 
+            name="mail-outline" slot="end" color="medium">
+          </ion-icon>
+            <ion-input  class="form-control"
+          id="mail" name="mail"  
+          placeholder="entrer votre email"  [(ngModel)]="user.mail"
+           #mail="ngModel" required>
+          </ion-input>
+        </ion-item>
+       
+        <ion-text 
+          class="ion-text-left"
+          color="danger"
+          *ngIf="f.submitted && !mail.valid"  >
+          <p class="error">*Please enter proper Email Address</p>
+        </ion-text>
+  
+        <ion-item class="ion-margin-vertical">
+          <ion-icon  name="mail-outline" slot="end" color="medium" >
+          </ion-icon>
+         
+          <ion-input 
+          type="password" class="form-control" id="pwd" name="pwd"  placeholder="entrer votre moy de passe"
+          [(ngModel)]="user.pwd" #pwd="ngModel" required  >
+          </ion-input>
+        </ion-item>
+        <ion-text 
+          class="ion-text-left"
+          color="danger"
+          *ngIf="f.submitted && !pwd.valid" >
+          <p class="error">
+            *Please enter your Password
+          </p>
+        
+        </ion-text>
+  
+        <ion-row class="ion-margin-vertical">
+          <ion-col size="6" class="alignItems">
+            <div align=left>
+              <ion-checkbox></ion-checkbox>
+              <ion-note>Remember me</ion-note>
+            </div>
+          </ion-col>
+          <ion-col size="6">
+            <div align=right>
+              <ion-note>Forgot password?</ion-note>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-button color="primary" shape="round" type="submit">Log In</ion-button>
+        <p class="signup">
+          <ion-note>
+            Not a member yet? <ion-text  color="primary" [routerLink]="['/', 'register']">Sign Up</ion-text>
+          </ion-note>
+        </p>
+      </ion-list>
+    </form>
+  </ion-content>
