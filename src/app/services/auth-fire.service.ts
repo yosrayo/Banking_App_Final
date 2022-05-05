@@ -7,9 +7,10 @@ export class AuthFireService {
 
   appVerifier: any;
   confirmationResult: any;
-
+ 
   constructor(
-    private _fireAuth: Auth
+    private _fireAuth: Auth ,
+
   ) { }
 
   recaptcha() {
@@ -44,4 +45,8 @@ export class AuthFireService {
       throw(e?.message);
     }
   }
+
+
+
+  
 }

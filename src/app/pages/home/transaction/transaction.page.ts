@@ -54,6 +54,7 @@ export class TransactionPage implements OnInit {
       } 
     };
    this.navCtrl.navigateForward(['detail-transaction'], navigationExtras);
+   console.log("actionnnn", navigationExtras)
   }
 
 }

@@ -16,6 +16,7 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { RowPipe } from './row.pipe';
 
 
+
 @NgModule({
   declarations: [AppComponent, RowPipe],
   entryComponents: [],
@@ -24,6 +25,8 @@ import { RowPipe } from './row.pipe';
       AppRoutingModule , 
       HttpClientModule ,
       QRCodeModule,
+
+    
       provideFirebaseApp(() => initializeApp(environment.firebase)), 
       provideAuth(() => getAuth()), 
       provideFirestore(() => getFirestore())
