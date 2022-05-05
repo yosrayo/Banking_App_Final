@@ -30,17 +30,13 @@
               </ion-select>
             </ion-item>
             <ion-item>
-              <ion-input name="reference" type="text" placeholder="reference Facture" ngModel required></ion-input>
+              <ion-input name="reference" type="text" placeholder="reference Facture" [(ngModel)]="facture.reference" required></ion-input>
             </ion-item>
+         
             <ion-item>
-              <ion-input name="cle" type="text" placeholder="clé Facture" ngModel required></ion-input>
+              <ion-input name="amount" type="text" placeholder="Montant Facture" [(ngModel)]="facture.amount" required></ion-input>
             </ion-item>
-            <ion-item>
-              <ion-input name="amount" type="text" placeholder="Montant Facture" ngModel required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input name="reference" type="text" placeholder="reference" ngModel required></ion-input>
-            </ion-item>
+          
           </div>
           <div padding>
             <ion-button color="primary" shape="round" type="submit" [disabled]="form.invalid" expand="block">Confirmer</ion-button>

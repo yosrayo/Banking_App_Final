@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { DetailTransactionPageRoutingModule } from './detail-transaction-routing.module';
 
 import { DetailTransactionPage } from './detail-transaction.page';
+import { RowPipe } from 'src/app/row.pipe';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { DetailTransactionPage } from './detail-transaction.page';
     IonicModule,
     DetailTransactionPageRoutingModule
   ],
-  declarations: [DetailTransactionPage]
+  declarations: [DetailTransactionPage ]
 })
 export class DetailTransactionPageModule {}

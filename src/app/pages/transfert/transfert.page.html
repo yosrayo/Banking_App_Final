@@ -18,20 +18,12 @@
             <h3>transfert d'argent</h3>
           </div>
           <div padding>
+        
             <ion-item>
-              <ion-input name="firstName" type="text" placeholder="Nom" ngModel required></ion-input>
+              <ion-input name="amount" type="text" placeholder="Montant en Dinars"   [(ngModel)]="montant.amount"  required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input name="lastName" type="text" placeholder="Prénom" ngModel required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input name="amount" type="text" placeholder="Montant en Dinars" ngModel required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input name="RIB" type="text" placeholder="NUméro RIB" ngModel required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input name="banque" type="text" placeholder="Banque" ngModel required></ion-input>
+              <ion-input name="idPaiement" type="text" placeholder="NUméro RIB"  [(ngModel)]="idPaiement" required></ion-input>
             </ion-item>
           </div>
           <div padding>

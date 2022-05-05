@@ -13,11 +13,12 @@ enum ActionType {
 
 export class Action {
     idAction : number ;
-    actionType : ActionType;
+    actionType : string;
     amount : number ;
     dateAction : Date;
 	userTo : number;
 	userFrom : number ;
 	organizationTo : number ;
+	reference:number;
 
 }

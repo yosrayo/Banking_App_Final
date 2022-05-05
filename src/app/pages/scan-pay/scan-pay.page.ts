@@ -1,16 +1,13 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import jsQR from "jsqr";
 @Component({
-  selector: 'app-scanner',
-  templateUrl: './scanner.page.html',
-  styleUrls: ['./scanner.page.scss'],
+  selector: 'app-scan-pay',
+  templateUrl: './scan-pay.page.html',
+  styleUrls: ['./scan-pay.page.scss'],
 })
-
-export class ScannerPage implements OnInit {
-
+export class ScanPayPage implements OnInit {
   scanActive = false;
   scanResult = null;
   @ViewChild('video', { static: false }) video: ElementRef;
@@ -22,7 +19,8 @@ export class ScannerPage implements OnInit {
   back: boolean;
   constructor(private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
-    public router: Router) { }
+    public router: Router,
+    private alertController : AlertController , ) { }
 
   ngOnInit(): void {
     ///back to home page
@@ -120,5 +118,52 @@ export class ScannerPage implements OnInit {
     });
     toast.present();
   }
+
+
+  async valid() {
+   // console.log("rrrrrrrrrr", this.facture)
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+    
+      header: 'Pour Confirmer la facture',
+      message:'Vous allez effectuer une facture à ****  . Le montant ** DT. Merci d"entrez votre code confidentiel ',
+      inputs: [
+        {
+          name: 'code',
+          type: 'text',
+          placeholder: 'Entrer votre code confidentiel',
+        },
+        
+      ],
+      buttons: [
+        {
+          text: 'Annuler',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          },
+        },
+        {
+          text: 'Confirmer',
+          handler: () => {
+          /* this.actionService.payFacture( 1,2,this.facture)
+            .subscribe(
+              res => {
+                this.router.navigateByUrl('/confirm')
+              },
+              err => console.log(err)
+            );
+         */
+            this.router.navigateByUrl('/confirm')
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+
 
 }

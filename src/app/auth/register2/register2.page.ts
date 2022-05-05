@@ -15,14 +15,14 @@ user : User = new User();
   isTypePassword: boolean = true;
   data: any; // data from register etape1
 
-  constructor(private route: Router ,private router: ActivatedRoute, private userService : UserService) {
+  constructor(private route: Router ,
+    private router: ActivatedRoute,
+     private userService : UserService) {
     //reçoi data from register etape 1 
-    this.router.queryParams.subscribe(params => {
-      if (params && params.special) {
-        this.user = JSON.parse(params.special);
-        console.log("ffffffff",this.user)
-      }
-    });
+    this.router.queryParams.subscribe((params) => {  
+      this.data = this.route.getCurrentNavigation().extras.state;
+     console.log("dataa",this.data);
+});
    
   }
 
@@ -34,22 +34,11 @@ user : User = new User();
 
  
 
-  x() {
-    if (!this.signupForm.valid) return;
-  else {
-    let navigationExtras: NavigationExtras = {
-      state: {
-        special: JSON.stringify(this.user)
-      }
-    };
-    this.route.navigate(['register3'], navigationExtras);
-  }
- 
-  }
+  
     
   registerUser() {
  
-    this.userService.create(this.user)
+    this.userService.create(this.data)
     .subscribe(
       res => {
         this.route.navigate(['/register3']);

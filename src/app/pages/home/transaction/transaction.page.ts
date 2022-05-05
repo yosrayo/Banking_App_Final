@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Action } from 'src/app/classes/action';
+import { NavigationExtras, Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { ActionService } from 'src/app/services/action.service';
+import { DetailTransactionPage } from '../../detail-transaction/detail-transaction.page';
 
 @Component({
   selector: 'app-transaction',
@@ -13,7 +14,10 @@ export class TransactionPage implements OnInit {
   back: boolean;
   newHeight = 0;
   listAction = [] as any;
-  constructor(public router: Router , private actionService:ActionService) { }
+  constructor(public router: Router ,
+     private actionService:ActionService ,
+     private route: Router  ,
+      public navCtrl: NavController) { }
 
   ngOnInit() {
     //retour page home
@@ -38,6 +42,18 @@ export class TransactionPage implements OnInit {
     if(value > 180 && this.newHeight <= 65) {
       this.newHeight += 50;
     }
+  }
+
+ 
+  goTo(action) {
+
+
+    let navigationExtras: NavigationExtras = {
+      state: {
+        action
+      } 
+    };
+   this.navCtrl.navigateForward(['detail-transaction'], navigationExtras);
   }
 
 }

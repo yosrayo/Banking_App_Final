@@ -26,6 +26,7 @@ export class UserService {
   }
 
   private UsersUrl = 'http://localhost:8089/ddops/user';
+  private url = 'http://localhost:8089/ddops/user/addUser';
   constructor(private http: HttpClient) { }
 
   getUsers (): Observable<User[]> {
@@ -46,7 +47,7 @@ export class UserService {
   }
 
   create(user: User): Observable<any> {
-    return this.http.post<User>(this.UsersUrl +'/addUser', user, httpOptions).pipe(
+    return this.http.post<User>(this.url , user, httpOptions).pipe(
       tap((newUser: User) => console.log(`added user w/ id=${newUser.id}`)),
       catchError(this.handleError<User>('create'))
     );

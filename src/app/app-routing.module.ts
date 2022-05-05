@@ -71,6 +71,10 @@ const routes: Routes = [
     path: 'detail-transaction',
     loadChildren: () => import('./pages/detail-transaction/detail-transaction.module').then( m => m.DetailTransactionPageModule)
   },
+  {
+    path: 'scan-pay',
+    loadChildren: () => import('./pages/scan-pay/scan-pay.module').then( m => m.ScanPayPageModule)
+  },
  
  
 ];

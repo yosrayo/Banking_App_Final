@@ -13,10 +13,11 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 import { QRCodeModule } from 'angularx-qrcode';
+import { RowPipe } from './row.pipe';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, RowPipe],
   entryComponents: [],
   imports: [BrowserModule,
      IonicModule.forRoot(),
@@ -31,7 +32,7 @@ import { QRCodeModule } from 'angularx-qrcode';
      
       
  ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, QRScanner  ],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, QRScanner , RowPipe ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { Action } from 'src/app/classes/action';
+import { ActionService } from 'src/app/services/action.service';
 
 @Component({
   selector: 'app-transfert',
@@ -9,7 +11,13 @@ import { AlertController } from '@ionic/angular';
 })
 export class TransfertPage implements OnInit {
   back: boolean;
-  constructor(public router: Router , private alertController : AlertController) { }
+  amount: number;
+  idPaiement:number;
+  montant: Action = new Action();
+  constructor(public router: Router ,
+     private alertController : AlertController,
+     private actionService : ActionService
+     ) { }
 
   ngOnInit() {
     const data = this.router.url.split('/');
@@ -26,7 +34,7 @@ export class TransfertPage implements OnInit {
       cssClass: 'my-custom-class',
     
       header: 'Pour Confirmer le transfer',
-      message:'Vous allez effectuer un montant ****DT vers **** <br>. Merci d"entrez votre code confidentiel',
+      message:'Vous allez effectuer un montant '+this.amount +'DT vers' + this.idPaiement + '<br>. Merci d"entrez votre code confidentiel',
       inputs: [
         {
           name: 'code',
@@ -47,8 +55,14 @@ export class TransfertPage implements OnInit {
         {
           text: 'Confirmer',
           handler: () => {
-            console.log('Confirm Ok');
-            this.router.navigateByUrl('/confirm')
+            this.montant.actionType= "Virement_BANCAIRE"
+            this.actionService.sendMoney( 1,this.idPaiement,this.montant)
+            .subscribe(
+              res => {
+                this.router.navigateByUrl('/confirm')
+              },
+              err => console.log(err)
+            );
           },
         },
       ],

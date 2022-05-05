@@ -19,6 +19,8 @@ export class FacturePage implements OnInit {
   facture: Action = new Action();
   errorMessage: string;
   ionicForm: FormGroup;
+  reference:number;
+  amount: number;
  
   constructor( private  router:  Router , 
     private alertController : AlertController , 
@@ -60,7 +62,7 @@ export class FacturePage implements OnInit {
         {
           text: 'Confirmer',
           handler: () => {
-            this.actionService.payFacture( 1,2,this.facture)
+            this.actionService.add( 1,2,this.facture)
             .subscribe(
               res => {
                 this.router.navigateByUrl('/confirm')

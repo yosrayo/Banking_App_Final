@@ -14,11 +14,11 @@
     <ion-card  *ngFor="let i of listAction" >
       <ion-card-content >
         <div class="item-info">
-          <p>{{i.amount}}</p>
-          <p>xxxxxxxxxxx</p>
-          <p>xxxxxxxxxxxxxxxxx</p>
+          <p>{{i.amount}}DT</p>
+          <p>{{i.dateAction}}</p>
+          <p>{{i.actionType}}</p>
           <div class="qty-selector">
-            <ion-button fill="outline" slot="end" routerLink="/detail-transaction">details</ion-button>
+            <ion-button fill="outline" slot="end"  (click)="goTo(i)">details</ion-button>
           </div>
         </div>
       </ion-card-content>

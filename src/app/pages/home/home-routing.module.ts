@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'paiment',
     loadChildren: () => import('./paiment/paiment.module').then( m => m.PaimentPageModule)
   },
+  {
+    path: 'home',
+    loadChildren: () => import('../../pages/home/home.module').then( m => m.HomePageModule)
+  },
 ];
 
 @NgModule({

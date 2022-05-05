@@ -14,7 +14,7 @@ export class AppComponent {
     {title: 'transfert dargent', url: '/transfert', icon: 'cash'},
     {title: 'paiment marchant', url: '/marchant', icon: 'wallet', },
     {title: 'paiment facture', url: '/facture', icon: 'newspaper',},
-    {title: 'Scanner et payement', url: 'scanner', icon: 'scan-circle', },
+    {title: 'Scanner et payement', url: '/scan-pay', icon: 'scan-circle', },
   ];
 
   constructor() {}
