@@ -1,36 +1,28 @@
 <ion-header>
-
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-     <ion-menu-button *ngIf="back"></ion-menu-button>
-     <ion-back-button *ngIf="!back" defaultHref="/home"></ion-back-button>
+      <ion-menu-button *ngIf="back"></ion-menu-button>
+      <ion-back-button *ngIf="!back" defaultHref="/home"></ion-back-button>
     </ion-buttons>
-  
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="profile">
+  <form name="form-signin" (ngSubmit)="f.form.valid && update()" #f="ngForm" novalidate >
   <ion-card no-margin>
     <ion-card-content class="bg-profile" align="center">
-
-      
-    
-    
-        <div class="container">
-         
-          <div class="outer">
-            <img [src]="base64">
-              <div class="inner" style="background-color: black;" >
-                 <ion-icon name="camera" class="camera-icon" (click)="pickImagefromGallery()" ></ion-icon>
-              </div>
-           </div>
+      <div class="container">
+        <div class="outer">
+          <img [src]="base64"[(ngModel)]="user.photo" name="photo">
+          <div class="inner" style="background-color: black;">
+            <ion-icon name="camera" class="camera-icon" (click)="pickImagefromGallery()"></ion-icon>
+          </div>
         </div>
-   
-      <h1 class="fw500">João Firmino</h1>
+      </div>
+      <h1 class="fw500">{{actif.first_name}} {{actif.last_name}}</h1>
       <h2 color="light" margin-bottom>Customer</h2>
-    
     </ion-card-content>
-  
+
     <ion-grid fixed no-padding>
       <ion-row>
         <ion-col size="12" padding>
@@ -42,22 +34,22 @@
 
             <ion-item>
               <ion-label color="dark" position="stacked">Full Name:</ion-label>
-              <ion-input inputmode="text" placeholder="Ex..: Joe Doe" value="João Firmino"></ion-input>
+              <ion-input inputmode="text" placeholder="Ex..: Joe Doe" [(ngModel)]="user.firstName" name="firstName"></ion-input>
             </ion-item>
-    
+
             <ion-item>
               <ion-label color="dark" position="stacked">Email:</ion-label>
-              <ion-input inputmode="email" placeholder="Ex.: joe@doe.com" value="firminoata@gmail.com"></ion-input>
+              <ion-input inputmode="email" placeholder="Ex.: joe@doe.com" [(ngModel)]="user.mail" name="mail"></ion-input>
             </ion-item>
-    
+
             <ion-item>
               <ion-label color="dark" position="stacked">Address:</ion-label>
-              <ion-input inputmode="text" placeholder="Ex.: Abey Road 5"></ion-input>
+              <ion-input inputmode="text" placeholder="Ex.: Abey Road 5"  [(ngModel)]="user.address" name="address"></ion-input>
             </ion-item>
-    
+
             <ion-item>
               <ion-label color="dark">City</ion-label>
-              <ion-select>
+              <ion-select  [(ngModel)]="user.city" name="city">
                 <ion-select-option value="nes">New York</ion-select-option>
                 <ion-select-option value="n64">Los Angeles</ion-select-option>
                 <ion-select-option value="ps">London</ion-select-option>
@@ -67,7 +59,7 @@
                 <ion-select-option value="snes">New Delhi</ion-select-option>
               </ion-select>
             </ion-item>
-    
+
             <ion-item>
               <ion-label color="dark">State</ion-label>
               <ion-select>
@@ -81,15 +73,10 @@
               </ion-select>
             </ion-item>
           </ion-list>
-
-        
-  
         </ion-col>
       </ion-row>
     </ion-grid>
-  
-    <ion-button size="large" expand="full" color="dark" (click)="sendData()" no-margin>Edit</ion-button>
+    <ion-button size="large" expand="full" color="dark" (click)="update()" no-margin>Edit</ion-button>
   </ion-card>
-  
-  
+  </form>
 </ion-content>

@@ -10,38 +10,33 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./register2.page.scss'],
 })
 export class Register2Page implements OnInit {
-user : User = new User();
+user =[] as any;
   signupForm: FormGroup;
   isTypePassword: boolean = true;
-  data: any; // data from register etape1
-
+  data = [] as any;
+  data2 = [] as any;
   constructor(private route: Router ,
     private router: ActivatedRoute,
      private userService : UserService) {
     //reçoi data from register etape 1 
-    this.router.queryParams.subscribe((params) => {  
-      this.data = this.route.getCurrentNavigation().extras.state;
-     console.log("dataa",this.data);
-});
-   
-  }
+    
+     let data = this.route.getCurrentNavigation().extras.state;
+     this.data.push(data);
+     console.log("rrrrrrrrr", this.data[0].user)
+   this.data2= this.data[0].user; 
+   }
 
   ngOnInit() {
+    this.data = history.state.someData;
   }
 
- 
- 
 
- 
-
-  
-    
   registerUser() {
  
-    this.userService.create(this.data)
+    this.userService.create(this.data2)
     .subscribe(
       res => {
-        this.route.navigate(['/register3']);
+       // this.route.navigate(['/register3']);
         alert("ajouter avec succés");
       },
       err => console.log(err)

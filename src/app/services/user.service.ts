@@ -25,38 +25,41 @@ export class UserService {
     };
   }
 
-  private UsersUrl = 'http://localhost:8089/ddops/user';
+  private UsersUrl = 'http://localhost:8089/ddops/user/';
   private url = 'http://localhost:8089/ddops/user/addUser';
   constructor(private http: HttpClient) { }
 
-  getUsers (): Observable<User[]> {
-    return this.http.get<User[]>(this.UsersUrl).pipe(
-      tap(_ => console.log('fetched Users')),
-      catchError(this.handleError<User[]>('getUsers', []))
-    );
-  }
 
-  getUserId(id:number){
-    return this.http.get(this.UsersUrl+'/'+id)
-  }
   getUser (email:String, mdp:String): Observable<User[]> {
-    return this.http.get<User[]>(this.UsersUrl+'/'+email+'/'+mdp).pipe(
+    return this.http.get<User[]>(this.UsersUrl+'authentify/'+email+'/'+mdp).pipe(
       tap(_ => console.log('fetched Users')),
       catchError(this.handleError<User[]>('getUsers', []))
     );
   }
 
+  passwordForgettin(username: String , new_password : string): Observable<any> {
+    return this.http.post(this.UsersUrl+'passwordForgettin/'+username+'/'+new_password ,httpOptions).pipe(
+      tap((newUser: User) => console.log(`added user w/ id=${newUser.id}`)),
+      catchError(this.handleError<User>('create'))
+    );
+  }
+  
   create(user: User): Observable<any> {
-    return this.http.post<User>(this.url , user, httpOptions).pipe(
+    return this.http.post<User>('http://localhost:8089/ddops/user/addUser', user, httpOptions).pipe(
       tap((newUser: User) => console.log(`added user w/ id=${newUser.id}`)),
       catchError(this.handleError<User>('create'))
     );
   }
 
-  update(user: User | number): Observable<User> {
-    return this.http.put<User>(this.UsersUrl, user, httpOptions).pipe(
+  updateUser(user: User ): Observable<User> {
+    return this.http.put<User>(this.UsersUrl +'updateProfile/', user, httpOptions).pipe(
       tap((newUser: User) => console.log(`updeted user w/ id=${newUser.id}`)),
       catchError(this.handleError<User>('create'))
     );
+  }
+
+   
+  updateUserX(id : number , emp : User) {
+    return this.http.put(this.UsersUrl + 'updateUser/' + id, emp);
   }
 }

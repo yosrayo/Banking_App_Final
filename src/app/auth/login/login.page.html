@@ -9,25 +9,19 @@
       </ion-text>
     </ion-label> 
   
-    <form name="form-signin" (ngSubmit)="f.form.valid && login(f)" #f="ngForm" novalidate >
+    <form name="form-signin" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate >
       <ion-list lines="none" class="ion-margin ion-padding ion-text-center">
         <ion-item class="ion-margin-vertical">
           <ion-icon 
             name="mail-outline" slot="end" color="medium">
           </ion-icon>
             <ion-input  class="form-control"
-          id="mail" name="mail"  
-          placeholder="entrer votre email"  [(ngModel)]="user.mail"
-           #mail="ngModel" required>
+          id="username" name="username"  
+          placeholder="entrer votre email"  [(ngModel)]="username" required>
           </ion-input>
         </ion-item>
        
-        <ion-text 
-          class="ion-text-left"
-          color="danger"
-          *ngIf="f.submitted && !mail.valid"  >
-          <p class="error">*Please enter proper Email Address</p>
-        </ion-text>
+        
   
         <ion-item class="ion-margin-vertical">
           <ion-icon  name="lock-closed-outline" slot="end" color="medium" >
@@ -35,19 +29,10 @@
          
           <ion-input 
           type="password" class="form-control" id="pwd" name="pwd"  placeholder="entrer votre moy de passe"
-          [(ngModel)]="user.pwd" #pwd="ngModel" required  >
+          [(ngModel)]="pwd" required  >
           </ion-input>
         </ion-item>
-        <ion-text 
-          class="ion-text-left"
-          color="danger"
-          *ngIf="f.submitted && !pwd.valid" >
-          <p class="error">
-            *Please enter your Password
-          </p>
         
-        </ion-text>
-  
         <ion-row class="ion-margin-vertical">
           <ion-col size="6" class="alignItems">
             <div align=left>
@@ -57,7 +42,7 @@
           </ion-col>
           <ion-col size="6">
             <div align=right>
-              <ion-note>Forgot password?</ion-note>
+              <ion-note [routerLink]="['/', 'forget-pass']">Forgot password?</ion-note>
             </div>
           </ion-col>
         </ion-row>

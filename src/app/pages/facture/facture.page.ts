@@ -21,12 +21,16 @@ export class FacturePage implements OnInit {
   ionicForm: FormGroup;
   reference:number;
   amount: number;
- 
+  actif = {} as any ;
+  id : number;
   constructor( private  router:  Router , 
     private alertController : AlertController , 
     private actionService : ActionService) { }
 
   ngOnInit() {
+    this.actif = JSON.parse(localStorage.getItem('user'));
+    this.id = this.actif.id_user
+
 
     const data = this.router.url.split('/');
     console.log(data);
@@ -62,7 +66,10 @@ export class FacturePage implements OnInit {
         {
           text: 'Confirmer',
           handler: () => {
-            this.actionService.add( 1,2,this.facture)
+            this.facture.actionType="Paiement_FACTURE";
+            this.facture.amount=this.amount;
+            this.facture.reference=this.reference;
+            this.actionService.add( this.id,this.reference,this.facture)
             .subscribe(
               res => {
                 this.router.navigateByUrl('/confirm')

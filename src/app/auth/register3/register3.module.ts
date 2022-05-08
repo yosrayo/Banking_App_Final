@@ -18,6 +18,6 @@ import { OtpComponent } from './otp/otp.component';
     ReactiveFormsModule,
     NgOtpInputModule
   ],
-  declarations: [Register3Page , OtpComponent]
+  declarations: [Register3Page ]
 })
 export class Register3PageModule {}

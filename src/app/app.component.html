@@ -7,9 +7,9 @@
             <img src="assets/imgs/2.png" />
           </ion-avatar>
           <ion-label color="white">
-            Nikhil Agarwal
+            {{actif.first_name}} {{actif.last_name}}
             <p>
-              <ion-text>9999900000 | nyk@xyz.com</ion-text>
+              <ion-text>{{actif.mail}}</ion-text>
             </p>
           </ion-label>
         </div>
@@ -46,7 +46,7 @@
     <ion-footer class="ion-no-border">
       <ion-toolbar color="secondary">
         <ion-item lines="none" color="secondary">
-          <ion-label>Deconnecxion</ion-label>
+          <ion-label (click)=" signOut()">Deconnecxion</ion-label>
           <ion-icon slot="end" name="log-out"></ion-icon>
         
         </ion-item>

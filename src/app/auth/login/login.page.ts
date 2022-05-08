@@ -15,10 +15,15 @@ export class LoginPage implements OnInit {
 
   user: User = new User();
   errorMessage: string;
-  u = {} as any;
+
+  u :User[];
+
   h: any;
   b=false;
-  constructor(private authService: AuthService, private router: Router ) { }
+
+  pwd: string;
+  username:string;
+  constructor(private userService: UserService, private router: Router ) { }
 
   ngOnInit() {
 
@@ -26,16 +31,17 @@ export class LoginPage implements OnInit {
   }
 
 
-  login(f) {
-    this.authService.login(f.value).subscribe({
-      next: (response) => {
-        console.log(response);
-        localStorage.setItem('my_token', response['token']);
-        this.router.navigateByUrl('/home');
-      },
-      error: (err) => {
-        console.log('Erreur avec Login');
-      },
+  login() {
+    this.userService.getUser(this.username, this.pwd).subscribe((res) => {
+      this.u = res;
+      console.log("hhhhhh",this.u)
+      
+      if(this.u){
+        this.router.navigate(['/home']);
+        localStorage.setItem("user",JSON.stringify(this.u));
+      }else{
+        alert("mot de passe incorrecte")
+      }
     });
   }
   

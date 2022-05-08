@@ -12,23 +12,16 @@ export class DetailTransactionPage implements OnInit {
   act;
   back: boolean;
   constructor(public router: Router, private route: ActivatedRoute) {
-  //  this.route.queryParams.subscribe((params) => {  
-      let action = this.router.getCurrentNavigation().extras.state;
-   
-   
-     console.log("yosraaaa",action);
-
+    let action = this.router.getCurrentNavigation().extras.state;
+    console.log("yosraaaa", action);
     this.act = action;
     console.log('act', this.act);
-    
-     this.actionList.push(action);
-     console.log(this.actionList);
-     for (const item of this.actionList) {
-       console.log("item", item.action.date_action);
-     }
-     
-//});
-   
+
+    this.actionList.push(action);
+    console.log(this.actionList);
+  
+
+
   }
 
   ngOnInit() {

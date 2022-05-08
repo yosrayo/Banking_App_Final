@@ -1,10 +1,8 @@
+import { ModalController, ModalOptions } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
-import { User } from 'src/app/classes/user';
-import { AuthFireService } from 'src/app/services/auth-fire.service';
 import { OtpComponent } from './otp/otp.component';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-register3',
@@ -12,35 +10,18 @@ import { OtpComponent } from './otp/otp.component';
   styleUrls: ['./register3.page.scss'],
 })
 export class Register3Page implements OnInit {
-
   form: FormGroup;
-  user = new User();
+
   constructor(
     private modalCtrl: ModalController,
-    private auth: AuthFireService,
-    private route: Router ,
-    private router: ActivatedRoute,
+    private auth: AuthService
   ) { }
 
   ngOnInit() {
-    this.router.queryParams.subscribe(params => {
-      if (params && params.special) {
-        this.user = JSON.parse(params.special);
-        console.log("ffffffff",this.user)
-      }
-    });
-   
     this.form = new FormGroup({
       phone: new FormControl(null, {
         validators: [Validators.required, Validators.minLength(8), Validators.maxLength(8)]
       }),
-    });
-
-    this.router.queryParams.subscribe(params => {
-      if (params && params.special) {
-        this.user = JSON.parse(params.special);
-        console.log("hhhhhh",this.user)
-      }
     });
   }
 
@@ -55,7 +36,7 @@ export class Register3Page implements OnInit {
       const response = await this.auth.signInWithPhoneNumber('+216' + this.form.value.phone);
       console.log(response);
 
-      const options: any = {
+      const options: ModalOptions = {
         component: OtpComponent,
         componentProps: {
           phone: this.form.value.phone
@@ -70,5 +51,9 @@ export class Register3Page implements OnInit {
       console.log(e);
     }
   }
+
+
+ 
+
 
 }

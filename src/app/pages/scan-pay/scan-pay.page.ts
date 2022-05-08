@@ -2,6 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import jsQR from "jsqr";
+import { Action } from 'src/app/classes/action';
+import { ActionService } from 'src/app/services/action.service';
 @Component({
   selector: 'app-scan-pay',
   templateUrl: './scan-pay.page.html',
@@ -17,12 +19,25 @@ export class ScanPayPage implements OnInit {
   canvasElement: any;
   canvasContext: any;
   back: boolean;
+
+  actif = {} as any ;
+  id : number;
+
+  reference : number;
+  amount : number;
+
+  action: Action = new Action();
+  
   constructor(private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
     public router: Router,
-    private alertController : AlertController , ) { }
+    private alertController : AlertController , 
+    private actionService : ActionService
+    ) { }
 
   ngOnInit(): void {
+    this.actif = JSON.parse(localStorage.getItem('user'));
+    this.id = this.actif.id_user
     ///back to home page
     const data = this.router.url.split('/');
     console.log(data);
@@ -147,14 +162,14 @@ export class ScanPayPage implements OnInit {
         {
           text: 'Confirmer',
           handler: () => {
-          /* this.actionService.payFacture( 1,2,this.facture)
+          this.actionService.add( this.id,this.reference,this.action)
             .subscribe(
               res => {
                 this.router.navigateByUrl('/confirm')
               },
               err => console.log(err)
             );
-         */
+       
             this.router.navigateByUrl('/confirm')
           },
         },

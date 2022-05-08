@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { Facture } from 'src/app/classes/facture';
+import { Action } from 'src/app/classes/action';
 import { ActionService } from 'src/app/services/action.service';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -13,15 +13,22 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class MarchantPage implements OnInit {
   back: boolean;
-  facture: Facture = new Facture();
+  action: Action = new Action();
   errorMessage: string;
   ionicForm: FormGroup;
- 
+  
+  actif = {} as any ;
+  id : number;
+
+  referance : number;
+  amount : number;
   constructor(private  router:  Router ,
      private alertController : AlertController , 
     private actionService : ActionService) { }
 
   ngOnInit() {
+    this.actif = JSON.parse(localStorage.getItem('user'));
+    this.id = this.actif.id_user
 
     const data = this.router.url.split('/');
     console.log(data);
@@ -34,7 +41,7 @@ export class MarchantPage implements OnInit {
 
 
   async valid() {
-    console.log("rrrrrrrrrr", this.facture)
+    console.log("rrrrrrrrrr", this.action)
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
     
@@ -45,6 +52,7 @@ export class MarchantPage implements OnInit {
           name: 'code',
           type: 'text',
           placeholder: 'Entrer votre code confidentiel',
+         
         },
         
       ],
@@ -60,14 +68,17 @@ export class MarchantPage implements OnInit {
         {
           text: 'Confirmer',
           handler: () => {
-          /* this.actionService.payFacture( 1,2,this.facture)
+            this.action.reference=this.referance;
+            this.action.actionType="Paiement_MARCHAND";
+            this.action.amount=this.amount;
+          this.actionService.add(this.id,this.referance,this.action)
             .subscribe(
               res => {
                 this.router.navigateByUrl('/confirm')
               },
               err => console.log(err)
             );
-         */
+      
             this.router.navigateByUrl('/confirm')
           },
         },

@@ -33,10 +33,10 @@ export class RegisterPage implements OnInit {
   }
 
   
-  goTo() {
+  goTo(user) {
     let navigationExtras: NavigationExtras = {
       state: {
-        id: JSON.stringify(this.user)
+       user
       } 
     };
    this.navCtrl.navigateForward(['register2'], navigationExtras);

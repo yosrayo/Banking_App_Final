@@ -14,7 +14,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 import { QRCodeModule } from 'angularx-qrcode';
 import { RowPipe } from './row.pipe';
-
+import { AngularFireModule } from '@angular/fire/compat';
 
 
 @NgModule({
@@ -25,15 +25,12 @@ import { RowPipe } from './row.pipe';
       AppRoutingModule , 
       HttpClientModule ,
       QRCodeModule,
-
-    
       provideFirebaseApp(() => initializeApp(environment.firebase)), 
       provideAuth(() => getAuth()), 
       provideFirestore(() => getFirestore())
-      
-      
      
       
+          
  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, QRScanner , RowPipe ],
   bootstrap: [AppComponent],

@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Auth, RecaptchaVerifier, signInWithPhoneNumber } from '@angular/fire/auth';
+
 @Injectable({
   providedIn: 'root'
 })
-export class AuthFireService {
+export class AuthService {
+
 
   appVerifier: any;
   confirmationResult: any;
- 
-  constructor(
-    private _fireAuth: Auth ,
 
+  constructor(
+    private _fireAuth: Auth
   ) { }
 
   recaptcha() {
@@ -45,8 +46,4 @@ export class AuthFireService {
       throw(e?.message);
     }
   }
-
-
-
-  
 }

@@ -38,16 +38,16 @@ export class ActionService {
     }
 
 
-    add(userFrom:number , organizationTo : number, action: Action): Observable<any> {
-      return this.http.post<Action>(this.actionUrl +'addAction/' + userFrom +'/' +organizationTo , action, httpOptions).pipe(
+    add(userFrom:number , userTo : number, action: Action): Observable<any> {
+      return this.http.post<Action>(this.actionUrl +'addAction/' + userFrom +'/' +userTo , action, httpOptions).pipe(
         tap((newAction: Action) => console.log(`added user w/ id=${newAction.idAction}`)),
         catchError(this.handleError<Action>('create'))
       );
     }
 
 
-    payFacture(userFrom:number , organizationTo : number, action: Action): Observable<any> {
-      return this.http.post<Action>(this.actionUrl +'payFacture/' + userFrom +'/' +organizationTo , action, httpOptions).pipe(
+    payFacture(userFrom:number , factureReference : number, action: Action): Observable<any> {
+      return this.http.post<Action>(this.actionUrl +'payFacture/' + userFrom +'/' +factureReference , action, httpOptions).pipe(
         tap((newAction: Action) => console.log(`added user w/ id=${newAction.idAction}`)),
         catchError(this.handleError<Action>('create'))
       );

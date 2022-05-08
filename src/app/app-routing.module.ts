@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'welcome',
     pathMatch: 'full'
   },
   {
@@ -74,6 +74,10 @@ const routes: Routes = [
   {
     path: 'scan-pay',
     loadChildren: () => import('./pages/scan-pay/scan-pay.module').then( m => m.ScanPayPageModule)
+  },
+  {
+    path: 'forget-pass',
+    loadChildren: () => import('./pages/forget-pass/forget-pass.module').then( m => m.ForgetPassPageModule)
   },
  
  

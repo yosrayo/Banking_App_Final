@@ -318,5 +318,6 @@ export class User {
     accountType : AccountType;
 	idPaiement : number;
 	bank : string;
+	photo : string;
 	
 }

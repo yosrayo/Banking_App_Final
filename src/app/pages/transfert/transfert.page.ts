@@ -14,12 +14,18 @@ export class TransfertPage implements OnInit {
   amount: number;
   idPaiement:number;
   montant: Action = new Action();
+  actif = {} as any ;
+  id : number;
   constructor(public router: Router ,
      private alertController : AlertController,
      private actionService : ActionService
      ) { }
 
   ngOnInit() {
+    this.actif = JSON.parse(localStorage.getItem('user'));
+    this.id = this.actif.id_user
+
+
     const data = this.router.url.split('/');
     console.log(data);
     if(data[1] == 'home') this.back = true;
@@ -56,7 +62,7 @@ export class TransfertPage implements OnInit {
           text: 'Confirmer',
           handler: () => {
             this.montant.actionType= "Virement_BANCAIRE"
-            this.actionService.sendMoney( 1,this.idPaiement,this.montant)
+            this.actionService.sendMoney( this.id,this.idPaiement,this.montant)
             .subscribe(
               res => {
                 this.router.navigateByUrl('/confirm')

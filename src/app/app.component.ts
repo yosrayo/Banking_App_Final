@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   static API_URL="http://localhost:8089/user/login";
+  actif = {} as any ;
+
   public pages: any[] = [
     {title: 'Accueil', url: '/home', icon: 'home'},
     {title: 'Compte', url: '/profile', icon: 'person-circle'},
@@ -17,9 +20,19 @@ export class AppComponent {
     {title: 'Scanner et payement', url: '/scan-pay', icon: 'scan-circle', },
   ];
 
-  constructor() {}
+  constructor( private router : Router) {}
 
-  signOut() {
-    console.log('signout');
+  ngOnInit() {
+    this.actif = JSON.parse(localStorage.getItem('user'));
+
+    console.log('actif', this.actif)
+
   }
+  
+  signOut() {
+    this.router.navigate(['/login']);
+    localStorage.removeItem("user");
+  }
+
+
 }

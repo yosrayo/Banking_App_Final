@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { LoadingController, ModalController, ToastController } from '@ionic/angular';
-import { AuthFireService } from 'src/app/services/auth-fire.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+
 @Component({
   selector: 'app-otp',
   templateUrl: './otp.component.html',
@@ -21,7 +22,7 @@ export class OtpComponent implements OnInit {
     public modalCtrl: ModalController,
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
-    private auth: AuthFireService
+    private auth: AuthService
     ) { }
 
   ngOnInit() {}

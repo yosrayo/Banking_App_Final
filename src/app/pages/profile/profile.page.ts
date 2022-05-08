@@ -9,10 +9,13 @@ import { Router } from '@angular/router';
 export class ProfilePage implements OnInit {
 
   back: boolean;
-
+  actif = {} as any ;
   constructor(public router: Router) { }
 
   ngOnInit() {
+
+    this.actif = JSON.parse(localStorage.getItem('user'));
+
     const data = this.router.url.split('/');
     console.log(data);
     if(data[1] == 'home') this.back = true;
